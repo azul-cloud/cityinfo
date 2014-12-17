@@ -12,5 +12,7 @@ DATABASES = {
         }
     }
 
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
+
 DEBUG = True
 TEMPLATE_DEBUG = True
