@@ -19,11 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'wp4q=*9o27fsf==_2xvf+agj-x$na_+@3=_kx(g7e+6t)9urxc'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -52,21 +47,6 @@ ROOT_URLCONF = 'cityinfo.urls'
 
 WSGI_APPLICATION = 'cityinfo.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
-DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': 'cityinfo',                      # Or path to database file if using sqlite3.
-            'USER': 'admin',
-            'PASSWORD': 'student12',
-            'HOST': 'localhost',                      # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
-            'PORT': '',                      # Set to empty string for default.
-            'TEST_NAME': 'cityinfo_test',
-        }
-    }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
