@@ -3,7 +3,9 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 
-from main.models import TimeStampedModel, City
+from main.models import TimeStampedModel
+
+from region.models import City
 
 
 class Tag(models.Model):
