@@ -1,0 +1,10 @@
+{% extends "bloginclude/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+    <div class="container">
+        <div class="col-sm-offset-3 col-sm-6">
+            {% crispy form %}
+        </div>
+    </div>
+{% endblock %}

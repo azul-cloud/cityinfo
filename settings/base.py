@@ -30,6 +30,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'south',
+    'braces',
+    'crispy_forms',
     
     'main',
     'blog',
@@ -66,3 +68,5 @@ USE_TZ = True
 AUTH_USER_MODEL = 'main.User'
 
 STATIC_URL = '/static/' 
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

@@ -1,5 +1,6 @@
 {% extends "bloginclude/base.html" %}
 
 {% block main %}
-	Shows info for {{ object }}
+    <h4 class="text-center">{{ object.title|title }}</h4>
+    <p>{{ object.body|safe }}</p>
 {% endblock %}

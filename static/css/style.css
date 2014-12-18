@@ -4,5 +4,8 @@ body, html {
 
 /***** Bootstrap Overrides *****/
 .navbar-nav > li {
-	font-size:150%;
+    font-size:150%;
+}
+.navbar {
+    border-radius: 0;
 }
