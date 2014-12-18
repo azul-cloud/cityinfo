@@ -13,7 +13,7 @@ class BlogModelTest(TestCase):
         self.user = User.objects.create_user(
             "test_user",
             "email@domain.com",
-            "testpasswd",
+            "testpassword",
         )
 
         self.country = Country.objects.create(
@@ -50,4 +50,47 @@ class BlogModelTest(TestCase):
         post = BlogPost.objects.get(title="Test Title")
         self.assertNotEqual(post.slug, None)
 
+
+class BlogViewTest(TestCase):
+    def setUp(self):
+        BlogModelTest.setUp(self)
+
+        self.client.login(username=self.user.username, 
+            password='testpassword')
+
+    def test_blog_home(self):
+        url = reverse('blog_home')
+        response = self.client.get(url)
+
+        self.assertContains(response, "City Info")
+
+    def test_blog_create(self):
+        url = reverse('blog_create')
+        response = self.client.get(url)
+
+        self.assertContains(response, "Create")
+
+    def test_blog_update(self):
+        url = reverse('blog_update', kwargs={'slug':self.post.slug})
+        response = self.client.get(url)
+
+        self.assertContains(response, "Update")
+
+    def test_blog_post(self):
+        url = reverse('blog_post', kwargs={'slug':self.post.slug})
+        response = self.client.get(url)
+
+        self.assertContains(response, self.post.title)
+
+    def test_blog_search(self):
+        '''
+        this is just testing the search view, it is not testing the
+        functionality of the search form, nor the results.
+        '''
+        url = reverse('blog_search')
+        response = self.client.get(url)
+
+
+class BlogFormTest(TestCase):
+    pass
 
