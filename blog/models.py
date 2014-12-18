@@ -32,6 +32,9 @@ class BlogPost(TimeStampedModel):
 	author = models.ForeignKey(settings.AUTH_USER_MODEL)
 	city = models.ForeignKey(City)
 
+	class Meta:
+		unique_together = ("city", "slug")
+
 	def __str__(self):
 		return self.title
 

@@ -14,5 +14,9 @@ DATABASES = {
 
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
 DEBUG = True
 TEMPLATE_DEBUG = True

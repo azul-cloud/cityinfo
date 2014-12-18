@@ -1,3 +1,8 @@
 body, html {
     font-family: "Open Sans", sans-serif;
 }
+
+/***** Bootstrap Overrides *****/
+.navbar-nav > li {
+	font-size:150%;
+}
