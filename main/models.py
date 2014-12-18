@@ -21,19 +21,7 @@ class SaveSlugBase(models.Model):
     '''
 
     slug = models.SlugField(db_index=True, unique=True, 
-        editable=False, blank=True)
-
-    def save(self, *args, **kwargs):
-        '''
-        Check which field is on the model. We either base the
-        slug off of the title or name field.
-        '''
-        if hasattr(attr, 'title'):
-            self.slug = slugify(self.title)
-        elif hasattr(attr, 'name'):
-            self.slug = slugify(self.name)
-
-        super(SaveSlugBase, self).save(*args, **kwargs)    
+        editable=False, blank=True) 
 
     class Meta:
         abstract = True
@@ -45,6 +33,14 @@ class SaveSlugTitle(SaveSlugBase):
     '''
     title = models.CharField(max_length=40)
 
+    def save(self, *args, **kwargs):
+        '''
+        set the slug based on the title field
+        '''
+        self.slug = slugify(self.title)
+        
+        super(SaveSlugTitle, self).save(*args, **kwargs)   
+
     class Meta:
         abstract = True
 
@@ -54,6 +50,14 @@ class SaveSlugName(SaveSlugBase):
     create a name field with the autosave slug field
     '''
     name = models.CharField(max_length=40)
+
+    def save(self, *args, **kwargs):
+        '''
+        set the slug based on the name field
+        '''
+        self.slug = slugify(self.name)
+        
+        super(SaveSlugName, self).save(*args, **kwargs)   
 
     class Meta:
         abstract = True
