@@ -1,7 +1,7 @@
 from django import forms
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Button
+from crispy_forms.layout import Submit, Layout, Fieldset, Div, ButtonHolder
 
 from .models import BlogPost
 
@@ -10,6 +10,10 @@ class BlogPostBaseForm(forms.ModelForm):
     '''
     Base form to be inherited by other blog post forms
     '''
+
+    # set the text at the top of the form
+    form_title = ""
+
     class Meta:
         model = BlogPost
         exclude = ['author']
@@ -17,16 +21,33 @@ class BlogPostBaseForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(BlogPostBaseForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-8'
         self.helper.layout = Layout(
-            'Create New Post',
-            'title',
-            'headline',
-            'body',
-            'tags',
-            'city',
-            Submit('submit', 'Create Post',
-            css_class='text-center')
+            Fieldset(
+                self.form_title,
+                'title',
+                'headline',
+                'body',
+                'tags',
+                'city',
+            ),
+            ButtonHolder(
+                Submit('submit', 'Submit', css_class='btn btn-primary')
+            )
         )
+
+
+class BlogPostCreateForm(BlogPostBaseForm):
+    '''
+    Create a new blog post
+    '''
+
+    form_title = "<h1 class='text-center'>Create New Post</h1>"
+
+
+class BlogPostUpdateForm(BlogPostBaseForm):
+    '''
+    Update an existing blog post
+    '''
+
+    form_title = "<h1 class='text-center'>Update Blog Post</h1>"
+

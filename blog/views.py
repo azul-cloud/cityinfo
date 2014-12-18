@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from braces.views import LoginRequiredMixin
 
 from .models import BlogPost
-from .forms import BlogPostBaseForm
+from .forms import BlogPostCreateForm, BlogPostUpdateForm
 
 
 class BlogHomeTemplateView(TemplateView):
@@ -33,7 +33,7 @@ class BlogPostCreateView(LoginRequiredMixin, CreateView):
     '''
 
     model = BlogPost
-    form_class = BlogPostBaseForm
+    form_class = BlogPostCreateForm
     template_name = "blogcontent/create.html"
 
     def form_valid(self, form):
@@ -50,4 +50,6 @@ class BlogPostUpdateView(LoginRequiredMixin, UpdateView):
     '''
 
     model = BlogPost
+    form_class = BlogPostUpdateForm
     template_name = "blogcontent/update.html"
+
